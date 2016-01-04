@@ -1367,8 +1367,8 @@ var Touch = function(Glide, Core) {
 
 		this.dragging = false;
 
-		if (Glide.options.touchDistance) Glide.track.on({ 'touchstart.glide': $.proxy(this.start, this) });
-		if (Glide.options.dragDistance) Glide.track.on({ 'mousedown.glide': $.proxy(this.start, this) });
+		if (Glide.options.touchDistance) Glide.wrapper.on({ 'touchstart.glide': $.proxy(this.start, this) });
+		if (Glide.options.dragDistance) Glide.wrapper.on({ 'mousedown.glide': $.proxy(this.start, this) });
 
 	}
 
@@ -1377,7 +1377,7 @@ var Touch = function(Glide, Core) {
 	 * Unbind touch events
 	 */
 	Module.prototype.unbind = function() {
-		Glide.track
+		Glide.wrapper
 			.off('touchstart.glide mousedown.glide')
 			.off('touchmove.glide mousemove.glide')
 			.off('touchend.glide touchcancel.glide mouseup.glide mouseleave.glide');
@@ -1407,7 +1407,7 @@ var Touch = function(Glide, Core) {
 			this.touchSin = null;
 			this.dragging = true;
 
-			Glide.track.on({
+			Glide.wrapper.on({
 				'touchmove.glide mousemove.glide': Core.Helper.throttle($.proxy(this.move, this), Glide.options.throttle),
 				'touchend.glide touchcancel.glide mouseup.glide mouseleave.glide': $.proxy(this.end, this)
 			});
@@ -1562,7 +1562,8 @@ var Touch = function(Glide, Core) {
 			// Remove dragging class
 			// Unbind events
 			Glide.track
-				.removeClass(Glide.options.classes.dragging)
+				.removeClass(Glide.options.classes.dragging);
+			Glide.wrapper
 				.off('touchmove.glide mousemove.glide')
 				.off('touchend.glide touchcancel.glide mouseup.glide mouseleave.glide');
 

@@ -11,6 +11,23 @@
 
 		<!-- Demo stylesheet -->
 		<link rel="stylesheet" href="css/demo.css">
+    <style>
+      .glide__wrapper {
+        position: relative;
+      }
+      .glide__arrows {
+        z-index: 40;
+      }
+      .mask {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 10px solid red;
+        top: 0;
+        left: 0;
+        z-index: 3;
+      }
+    </style>
 	</head>
 	<body>
 
@@ -23,6 +40,7 @@
 				</div>
 
 				<div class="glide__wrapper">
+          <div class="mask"></div>
 					<ul class="glide__track">
 						<li class="glide__slide" data-glide-autoplay="1000">
 							<div class="box" style="background-color: #77A7FB;">1</div>
